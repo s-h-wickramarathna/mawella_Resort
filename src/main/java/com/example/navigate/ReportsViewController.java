@@ -1,14 +1,109 @@
 package com.example.navigate;
 
+import com.example.navigate.database.MySQL;
+import com.example.navigate.model.Invoices;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ReportsViewController implements Initializable {
 
+    public JFXButton btnPrint;
+    public DatePicker txtDateChooser;
+    public JFXTextField txtTotalInvoices;
+    public JFXTextField txtGrandTotal;
+
+    @FXML
+    private TableView<Invoices> InvoicesTable;
+
+    @FXML
+    private TableColumn<Invoices, String> tc_No;
+
+    @FXML
+    private TableColumn<Invoices, String> tc_InvoiceNo;
+
+    @FXML
+    private TableColumn<Invoices, String> tc_PurchesedDate;
+
+    @FXML
+    private TableColumn<Invoices, String> tc_StuwardID;
+
+    @FXML
+    private TableColumn<Invoices, String> tc_StewardName;
+
+    @FXML
+    private TableColumn<Invoices, String> tc_Discount;
+
+    @FXML
+    private TableColumn<Invoices, String> tc_Amount;
+    ObservableList<Invoices> list = FXCollections.observableArrayList();
+
+
+    private void tableStructure() {
+        tc_No.setCellValueFactory(new PropertyValueFactory<Invoices, String>("No"));
+        tc_InvoiceNo.setCellValueFactory(new PropertyValueFactory<Invoices, String>("Invoice_No"));
+        tc_PurchesedDate.setCellValueFactory(new PropertyValueFactory<Invoices, String>("Purchesed_Date"));
+        tc_StuwardID.setCellValueFactory(new PropertyValueFactory<Invoices, String>("Steward_ID"));
+        tc_StewardName.setCellValueFactory(new PropertyValueFactory<Invoices, String>("Steward_Name"));
+        tc_Discount.setCellValueFactory(new PropertyValueFactory<Invoices, String>("Discount"));
+        tc_Amount.setCellValueFactory(new PropertyValueFactory<Invoices, String>("Amount"));
+
+        InvoicesTable.setItems(list);
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        tableStructure();
+        list.clear();
+
+        txtDateChooser.valueProperty().addListener((observable, oldValue, newValue) -> {
+            onSelectInvoices(newValue);
+        });
+    }
+
+    public void onClearAll(ActionEvent event) {
+    }
+
+    public void onSelectInvoices(LocalDate date) {
+        try {
+            int rowNumber = 0;
+            Double grandTotal = Double.valueOf(0);
+            ResultSet resultSet = MySQL.Search("SELECT * FROM `invoice` INNER JOIN `user` ON `user`.`user_id`=`invoice`.`user_id` WHERE `purchesed_date`='" + date + "' ");
+
+            while (resultSet.next()) {
+                rowNumber += 1;
+                String invoiceNo = resultSet.getString("invoice_no");
+                String purchesedDate = resultSet.getString("purchesed_date");
+                String Steward_ID = resultSet.getString("user_id");
+                String Steward_Name = resultSet.getString("fullName");
+                String Discount = resultSet.getString("discount");
+                String Amount = resultSet.getString("total");
+
+                grandTotal += Double.valueOf(Amount);
+
+                list.add(new Invoices(String.valueOf(rowNumber),invoiceNo,purchesedDate,Steward_ID,Steward_Name,Discount,Amount));
+            }
+
+            txtTotalInvoices.setText(String.valueOf(rowNumber));
+            txtGrandTotal.setText(String.valueOf(grandTotal));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }

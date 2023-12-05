@@ -37,8 +37,8 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtInvoiceDate" disable="true" layoutX="815.0" layoutY="62.0" prefHeight="25.0" prefWidth="163.0" promptText="YYYY/MM/DD" />
-      <JFXTextField fx:id="txtInvoiceNumber" disable="true" layoutX="815.0" layoutY="95.0" prefHeight="25.0" prefWidth="163.0" />
+      <JFXTextField fx:id="txtInvoiceDate" editable="false" layoutX="815.0" layoutY="62.0" prefHeight="25.0" prefWidth="163.0" promptText="YYYY/MM/DD" />
+      <JFXTextField fx:id="txtInvoiceNumber" editable="false" layoutX="815.0" layoutY="95.0" prefHeight="25.0" prefWidth="163.0" />
       <Label layoutX="20.0" layoutY="125.0" text="Food Item:">
          <font>
             <Font size="14.0" />
@@ -56,13 +56,13 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtSerialNo" disable="true" layoutX="93.0" layoutY="166.0" prefHeight="25.0" prefWidth="83.0" />
+      <JFXTextField fx:id="txtSerialNo" editable="false" layoutX="93.0" layoutY="166.0" prefHeight="25.0" prefWidth="83.0" />
       <Label layoutX="192.0" layoutY="169.0" text="Unit Price (Rs):">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtUnitPrice" disable="true" layoutX="289.0" layoutY="166.0" prefHeight="25.0" prefWidth="89.0" promptText="00.00" />
+      <JFXTextField fx:id="txtUnitPrice" editable="false" layoutX="289.0" layoutY="166.0" prefHeight="25.0" prefWidth="89.0" promptText="00.00" />
       <JFXButton fx:id="btnDeleteItem" buttonType="RAISED" layoutX="541.0" layoutY="168.0" onAction="#onDeleteRow" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: black;" text="Delete" textFill="WHITE" />
       <JFXButton fx:id="btnResetAddItemFields" buttonType="RAISED" layoutX="615.0" layoutY="168.0" onAction="#resetAddItemFields" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: red;" text="Clear" textFill="WHITE" />
       <TableView fx:id="invoiceTable" layoutX="20.0" layoutY="227.0" onMouseClicked="#onInvoiceTableRowSelected" prefHeight="352.0" prefWidth="657.0">
@@ -83,7 +83,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtTotalPrice" disable="true" layoutX="815.0" layoutY="219.0" prefHeight="25.0" prefWidth="163.0" promptText="0.0" />
+      <JFXTextField fx:id="txtTotalPrice" editable="false" layoutX="815.0" layoutY="219.0" prefHeight="25.0" prefWidth="163.0" promptText="0.0" />
       <JFXTextField fx:id="txtDiscount" layoutX="815.0" layoutY="252.0" onKeyReleased="#onSetDiscount" prefHeight="25.0" prefWidth="164.0" promptText="0" />
       <Label layoutX="964.0" layoutY="254.0" text="\%">
          <font>
@@ -109,7 +109,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtBalance" disable="true" layoutX="822.0" layoutY="467.0" prefHeight="25.0" prefWidth="163.0" promptText="0.0" />
+      <JFXTextField fx:id="txtBalance" editable="false" layoutX="822.0" layoutY="467.0" prefHeight="25.0" prefWidth="163.0" promptText="0.0" />
       <JFXButton fx:id="btnMakePayment" buttonType="RAISED" layoutX="693.0" layoutY="549.0" onAction="#onmakePayment" prefHeight="25.0" prefWidth="205.0" style="-fx-background-color: Green;" text="Make Payment &amp; Print Invoice" textFill="WHITE" />
       <JFXButton fx:id="btnResetInvoicePage" buttonType="RAISED" layoutX="907.0" layoutY="549.0" onAction="#resetInvoicePage" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: red;" text="Cancel" textFill="WHITE" />
       <Label layoutX="34.0" layoutY="83.0" text="Steward:">

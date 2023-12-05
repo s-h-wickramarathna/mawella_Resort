@@ -27,7 +27,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtSerialNo" disable="true" layoutX="91.0" layoutY="105.0" prefHeight="25.0" prefWidth="142.0" />
+      <JFXTextField fx:id="txtSerialNo" editable="false" layoutX="91.0" layoutY="105.0" prefHeight="25.0" prefWidth="142.0" />
       <Label layoutX="253.0" layoutY="107.0" text="Food Item:">
          <font>
             <Font size="14.0" />

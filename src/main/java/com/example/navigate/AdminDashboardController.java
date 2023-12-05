@@ -55,6 +55,10 @@ public class AdminDashboardController implements Initializable {
         borderPane.setCenter(FXMLLoader.load(getClass().getResource("panes/reports-view.fxml")));
     }
 
+    public void loadUserPage(ActionEvent event) throws  IOException{
+        borderPane.setCenter(FXMLLoader.load(getClass().getResource("panes/user-view.fxml")));
+    }
+
     public void onSwitchUserMode(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("user-dashboard.fxml"))));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -65,4 +69,5 @@ public class AdminDashboardController implements Initializable {
         stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
         stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
     }
+
 }
