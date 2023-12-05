@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="529.0" styleClass="main-color" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.navigate.HelloController">
+   <children>
+      <ImageView fitHeight="135.0" fitWidth="211.0" layoutX="159.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Hotel-logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="89.0" layoutY="227.0" text="Username: ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="267.0" text="Password:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXTextField layoutX="169.0" layoutY="225.0" prefHeight="25.0" prefWidth="235.0" promptText="Enter Valid UserName ...." />
+      <JFXButton fx:id="btnGoMainPage" buttonType="RAISED" layoutX="364.0" layoutY="346.0" onAction="#goToMainPage" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: green;" text="Login" textFill="WHITE" />
+      <JFXButton fx:id="btnCloseLoginPage" buttonType="RAISED" layoutX="444.0" layoutY="346.0" onAction="#exitLogin" style="-fx-background-color: red;" text="Cancel" textFill="WHITE" />
+      <JFXPasswordField layoutX="169.0" layoutY="266.0" prefHeight="25.0" prefWidth="235.0" />
+   </children>
+</AnchorPane>

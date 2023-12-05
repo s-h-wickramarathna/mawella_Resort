@@ -1,0 +1,40 @@
+
+.main-color{
+    -fx-background-color: #f7f9f7;
+}
+
+.sub-colour{
+    -fx-background-color: #ffffff;
+}
+
+.pane-corner-round{
+    -fx-background-radius: 10px;
+}
+
+
+.sideBar-menu-button{
+   -fx-background-color: #1e517b;
+    -fx-text-fill: #ffffff;
+}
+
+.sideBar-menu-panel{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
+}
+
+
+.sideBar-menu-button:hover{
+    -fx-background-color: #080e2c;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
+    /*-fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );*/
+}
+
+.textField-error{
+    -jfx-unfocus-color: #ff0000;
+}
+
+.error-pane{
+    -fx-background-color: #fcdcdc;
+    -fx-background-radius: 5px;
+}
