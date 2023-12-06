@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -40,20 +41,21 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <TableView fx:id="UserTable" editable="true" layoutX="22.0" layoutY="261.0" prefHeight="281.0" prefWidth="957.0">
+        <TableView fx:id="UserTable" editable="true" layoutX="22.0" layoutY="261.0" onMouseClicked="#tableRowSelected" prefHeight="281.0" prefWidth="957.0">
             <columns>
                 <TableColumn fx:id="tc_No" editable="false" prefWidth="49.0" text="No" />
                 <TableColumn fx:id="tc_UserId" editable="false" prefWidth="101.0" text="User ID" />
                 <TableColumn fx:id="tc_UserName" prefWidth="213.0" text="User Name" />
-                <TableColumn fx:id="tc_UserMobile" prefWidth="204.0" text="User Mobile" />
-                <TableColumn fx:id="tc_UserType" prefWidth="90.0" text="User Type" />
-                <TableColumn fx:id="tc_CreatedAt" editable="false" prefWidth="150.0" text="Created At" />
-                <TableColumn fx:id="tc_UpdatedAt" editable="false" prefWidth="148.0" text="Updated At" />
+                <TableColumn fx:id="tc_UserMobile" prefWidth="147.0" text="User Mobile" />
+                <TableColumn fx:id="tc_UserType" prefWidth="124.0" text="User Type" />
+            <TableColumn fx:id="tc_UserStatus" prefWidth="98.0" text="User Status" />
+                <TableColumn fx:id="tc_CreatedAt" editable="false" prefWidth="119.0" text="Created At" />
+                <TableColumn fx:id="tc_UpdatedAt" editable="false" prefWidth="105.0" text="Updated At" />
             </columns>
         </TableView>
-        <JFXTextField fx:id="txtSearchFoods" layoutX="757.0" layoutY="224.0" prefHeight="25.0" prefWidth="222.0" promptText="Search Foods ...." />
-        <JFXButton buttonType="RAISED" layoutX="782.0" layoutY="560.0" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: green;" text="Add" textFill="WHITE" />
-        <JFXButton buttonType="RAISED" disable="true" layoutX="852.0" layoutY="560.0" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: orange;" text="Update" textFill="WHITE" />
+        <JFXTextField fx:id="txtSearchUsers" layoutX="757.0" layoutY="224.0" onKeyReleased="#onSearchUsers" prefHeight="25.0" prefWidth="222.0" promptText="Search Foods ...." />
+        <JFXButton fx:id="btnAddUser" buttonType="RAISED" layoutX="714.0" layoutY="560.0" onAction="#onAddUser" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: green;" text="Add" textFill="WHITE" />
+        <JFXButton fx:id="btnUpdateUser" buttonType="RAISED" disable="true" layoutX="783.0" layoutY="560.0" onAction="#onUpdateUser" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: orange;" text="Update" textFill="WHITE" />
         <JFXButton buttonType="RAISED" layoutX="920.0" layoutY="560.0" onAction="#onCancelAll" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: red;" text="Cancel" textFill="WHITE" />
         <Label fx:id="newPasswordLabel" layoutX="268.0" layoutY="164.0" text="New Password:">
             <font>
@@ -73,7 +75,9 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtUserMobile" editable="false" layoutX="839.0" layoutY="105.0" prefHeight="25.0" prefWidth="142.0" />
+      <JFXTextField fx:id="txtUserMobile" layoutX="839.0" layoutY="105.0" prefHeight="25.0" prefWidth="142.0" />
+      <JFXButton fx:id="btnDeleteUser" buttonType="RAISED" disable="true" layoutX="852.0" layoutY="560.0" onAction="#onDeleteUser" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: black;" text="Delete" textFill="WHITE" />
+      <JFXToggleButton fx:id="btnactiveInactive" layoutX="882.0" layoutY="155.0" onAction="#onUserActiveInactive" prefHeight="46.0" prefWidth="64.0" />
     </children>
     <styleClass>
         <String fx:value="sub-colour" />

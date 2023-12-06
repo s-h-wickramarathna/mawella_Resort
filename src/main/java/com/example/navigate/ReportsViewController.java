@@ -13,10 +13,19 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.net.URL;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ReportsViewController implements Initializable {
@@ -105,5 +114,25 @@ public class ReportsViewController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    public void onPrintReport(ActionEvent event) {
+        try {
+
+            JasperDesign design = JRXmlLoader.load("src/main/resources/com/example/navigate/reports/report/Summery.jrxml");
+            JRDesignQuery designQuery = new JRDesignQuery();
+            designQuery.setText("SELECT * FROM `invoice` WHERE `purchesed_date`='"+txtDateChooser.getValue()+"' ");
+            design.setQuery(designQuery);
+            HashMap<String,Object> param = new HashMap<>();
+            param.put("Parameter1","0.0");
+            param.put("Parameter2","0.0");
+            param.put("Parameter3","0.0");
+            param.put("subReport", "src/main/resources/com/example/navigate/reports/report/InvoiceItem.jasper");
+            JasperReport jasperReport = JasperCompileManager.compileReport(design);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, MySQL.getInstance());
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

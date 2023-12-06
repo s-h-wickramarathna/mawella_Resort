@@ -7,15 +7,17 @@ public class User {
     public String UserName;
     public String UserMobile;
     public String UserType;
+    public String UserStatus;
     public String UserCreatedAt;
     public String UserUpdatedAt;
 
-    public User(String no, String userId, String userName, String userMobile, String userType, String userCreatedAt, String userUpdatedAt) {
+    public User(String no, String userId, String userName, String userMobile, String userType, String userStatus, String userCreatedAt, String userUpdatedAt) {
         No = no;
         UserId = userId;
         UserName = userName;
         UserMobile = userMobile;
         UserType = userType;
+        UserStatus = userStatus;
         UserCreatedAt = userCreatedAt;
         UserUpdatedAt = userUpdatedAt;
     }
@@ -58,6 +60,13 @@ public class User {
 
     public void setUserType(String userType) {
         UserType = userType;
+    }
+    public String getUserStatus() {
+        return UserStatus;
+    }
+
+    public void setUserStatus(String userStatus) {
+        UserStatus = userStatus;
     }
 
     public String getUserCreatedAt() {

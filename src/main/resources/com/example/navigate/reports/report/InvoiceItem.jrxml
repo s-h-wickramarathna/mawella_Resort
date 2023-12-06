@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InvoiceItem" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="86126f6a-8f17-46a3-8169-40f9ce7df96d">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="InvoiceNo" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM invoice_item 
+INNER JOIN food ON food.serial_no = invoice_item.food_serial_no
+WHERE invoice_no = $P{InvoiceNo}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoice_item"/>
+	</field>
+	<field name="qty" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="qty"/>
+		<property name="com.jaspersoft.studio.field.label" value="qty"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoice_item"/>
+	</field>
+	<field name="unit_price" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="unit_price"/>
+		<property name="com.jaspersoft.studio.field.label" value="unit_price"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoice_item"/>
+	</field>
+	<field name="invoice_no" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="invoice_no"/>
+		<property name="com.jaspersoft.studio.field.label" value="invoice_no"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoice_item"/>
+	</field>
+	<field name="food_serial_no" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="food_serial_no"/>
+		<property name="com.jaspersoft.studio.field.label" value="food_serial_no"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoice_item"/>
+	</field>
+	<field name="serial_no" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="serial_no"/>
+		<property name="com.jaspersoft.studio.field.label" value="serial_no"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="food"/>
+	</field>
+	<field name="food_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="food_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="food_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="food"/>
+	</field>
+	<field name="cost" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="cost"/>
+		<property name="com.jaspersoft.studio.field.label" value="cost"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="food"/>
+	</field>
+	<field name="selling_price" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="selling_price"/>
+		<property name="com.jaspersoft.studio.field.label" value="selling_price"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="food"/>
+	</field>
+	<field name="description" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="description"/>
+		<property name="com.jaspersoft.studio.field.label" value="description"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="food"/>
+	</field>
+	<field name="created_At" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="created_At"/>
+		<property name="com.jaspersoft.studio.field.label" value="created_At"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="food"/>
+	</field>
+	<field name="updated_At" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="updated_At"/>
+		<property name="com.jaspersoft.studio.field.label" value="updated_At"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="food"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="510" y="0" width="20" height="18" uuid="b5192e76-b1c1-4936-a51d-89dad57fff67">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d979b40-8b1f-4bc2-890d-1f603a0f4aa3"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="1" width="90" height="18" uuid="6aba3d76-3253-4694-9d8c-d8204c093f48">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d2026968-0c49-48e2-9fee-f6573d3f0031"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Selling Price (Rs)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="1" width="60" height="18" uuid="f5dc29c8-851b-4dda-b001-dc4258c8b044">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1f54cdb1-11a2-4915-a37b-8851dafba2f1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="0" width="60" height="18" uuid="147147e0-9553-4591-9414-5c1eb1842626">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6daa6c3e-2384-471e-9f91-84c017297f19"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Serial No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="1" width="180" height="18" uuid="2199307c-97ba-471a-a4af-75cbc66fa24c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="31adb46a-8d0c-4704-85f5-343be6868cf3"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Food Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="0" width="70" height="18" uuid="4fb5dd09-1648-4309-8416-037c3801afeb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="179251a8-9a77-420d-9930-a71c554f8970"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cost (Rs)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="529" height="1" uuid="24477d66-9032-4c08-9134-b7d75151362d"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="510" y="0" width="20" height="18" uuid="b0d58a41-6929-4e34-a429-8abf6523e1ae">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d979b40-8b1f-4bc2-890d-1f603a0f4aa3"/>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="0" width="90" height="20" uuid="9f076c0b-7239-45bd-b62c-0af8d66dcdfd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d2026968-0c49-48e2-9fee-f6573d3f0031"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{unit_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="60" height="20" uuid="8eac6443-e0f6-4b1b-b6c8-6f932fe01bae">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1f54cdb1-11a2-4915-a37b-8851dafba2f1"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{invoice_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="0" width="60" height="20" uuid="2755dbfd-6cc7-474c-bbc2-ffc645c14769">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6daa6c3e-2384-471e-9f91-84c017297f19"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{food_serial_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="0" width="180" height="20" uuid="d4a600b4-c9a6-4ba7-b80e-33f39e502f69">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="31adb46a-8d0c-4704-85f5-343be6868cf3"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{food_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="-1" width="70" height="20" uuid="bfb49c28-934d-4195-a803-895da79f329d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="179251a8-9a77-420d-9930-a71c554f8970"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{cost}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
