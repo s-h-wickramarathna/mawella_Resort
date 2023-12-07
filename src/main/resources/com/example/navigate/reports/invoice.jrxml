@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kitchenReport" pageWidth="298" pageHeight="420" columnWidth="258" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9cfde4ed-f581-4f87-be30-799fc12af27e">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kitchenReport" pageWidth="298" pageHeight="420" columnWidth="258" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="5" uuid="9cfde4ed-f581-4f87-be30-799fc12af27e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="0"/>
@@ -110,73 +110,70 @@ FROM mawellaresort.invoice
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="200" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="22" width="258" height="27" uuid="a8e76d07-1ee9-4218-9151-a86185670fd0"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="16" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Mawella Beach Resort]]></text>
-			</staticText>
+		<band height="258" splitType="Stretch">
 			<line>
-				<reportElement x="-11" y="72" width="281" height="1" uuid="34721397-4a70-485f-a3e7-35fcfc3e05b9"/>
+				<reportElement x="-11" y="104" width="281" height="1" uuid="34721397-4a70-485f-a3e7-35fcfc3e05b9"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="-11" y="140" width="281" height="1" uuid="e41440f2-81b0-4e7f-9413-081f6f4b1cab"/>
+				<reportElement x="-11" y="179" width="281" height="1" uuid="e41440f2-81b0-4e7f-9413-081f6f4b1cab"/>
 				<graphicElement>
 					<pen lineWidth="2.0" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="-11" y="198" width="281" height="1" uuid="8849ed6b-1fda-49a0-855c-8a1e9eda5bd4"/>
+				<reportElement x="-11" y="257" width="281" height="1" uuid="8849ed6b-1fda-49a0-855c-8a1e9eda5bd4"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
+			<image>
+				<reportElement x="55" y="0" width="148" height="99" uuid="e1a21848-512a-4a45-87ea-447d8b1a2841"/>
+				<imageExpression><![CDATA["src/main/resources/com/example/navigate/images/Hotel-logo.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
 		<band splitType="Stretch">
 			<staticText>
-				<reportElement x="-1" y="-116" width="260" height="29" uuid="503b64ae-6d5e-450d-84a4-1f353cf51074"/>
+				<reportElement x="-1" y="-137" width="260" height="29" uuid="503b64ae-6d5e-450d-84a4-1f353cf51074"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[Mahawela Road, Moraketiyara, Nakulugamuwa, Tangalle, Sri Lanka]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="-1" y="-87" width="260" height="17" uuid="cb3ab0fe-7c0f-4b98-b71d-f021ef598ddd"/>
+				<reportElement x="-1" y="-108" width="260" height="17" uuid="cb3ab0fe-7c0f-4b98-b71d-f021ef598ddd"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[TEL : +94 47 224 0585 / +94 71 987 6060]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="-58" width="60" height="13" uuid="12e02377-1ade-42ba-a2a3-87464db7ccdc"/>
+				<reportElement x="0" y="-62" width="60" height="13" uuid="12e02377-1ade-42ba-a2a3-87464db7ccdc"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<text><![CDATA[Date :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="-42" width="60" height="13" uuid="920cfdb6-2801-4fde-976f-abe209fd6cc0"/>
+				<reportElement x="0" y="-46" width="60" height="13" uuid="920cfdb6-2801-4fde-976f-abe209fd6cc0"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<text><![CDATA[Invoice No :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="-26" width="60" height="13" uuid="9a7b4cf7-3232-4345-acdc-4ef382222d3a"/>
+				<reportElement x="0" y="-30" width="60" height="13" uuid="9a7b4cf7-3232-4345-acdc-4ef382222d3a"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<text><![CDATA[Steward ID :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="150" y="-58" width="108" height="13" uuid="7e74069e-41c2-4ef0-8916-5fd8f42a711d"/>
+				<reportElement x="150" y="-62" width="108" height="13" uuid="7e74069e-41c2-4ef0-8916-5fd8f42a711d"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{purchesed_date}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="150" y="-42" width="108" height="13" uuid="c99ff871-674f-48f6-9725-cdc19239452a"/>
+				<reportElement x="150" y="-46" width="108" height="13" uuid="c99ff871-674f-48f6-9725-cdc19239452a"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{invoice_no}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="150" y="-26" width="108" height="13" uuid="3164d4ea-7f53-4da8-90d1-4cc0ebce8807"/>
+				<reportElement x="150" y="-30" width="108" height="13" uuid="3164d4ea-7f53-4da8-90d1-4cc0ebce8807"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{user_id}]]></textFieldExpression>
 			</textField>
@@ -191,7 +188,7 @@ FROM mawellaresort.invoice
 				<text><![CDATA[Serial No]]></text>
 			</staticText>
 			<line>
-				<reportElement x="-9" y="15" width="279" height="1" uuid="1db89d01-da8f-4af5-a505-341fd6484dc8"/>
+				<reportElement x="-9" y="16" width="279" height="1" uuid="1db89d01-da8f-4af5-a505-341fd6484dc8"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
@@ -247,57 +244,57 @@ FROM mawellaresort.invoice
 		</band>
 	</detail>
 	<summary>
-		<band height="98">
+		<band height="104">
 			<staticText>
-				<reportElement x="120" y="10" width="60" height="19" uuid="5104a554-8c45-44c8-aa37-0cc14e98f8c8"/>
+				<reportElement x="120" y="17" width="60" height="19" uuid="5104a554-8c45-44c8-aa37-0cc14e98f8c8"/>
 				<textElement textAlignment="Right" verticalAlignment="Top"/>
 				<text><![CDATA[Discount :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="189" y="10" width="50" height="18" uuid="d2409377-089c-42bb-9b1d-36a2749034a9"/>
+				<reportElement x="189" y="17" width="50" height="18" uuid="d2409377-089c-42bb-9b1d-36a2749034a9"/>
 				<textFieldExpression><![CDATA[$F{discount}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="239" y="10" width="20" height="18" uuid="f52306a8-039c-4f8e-8880-376482c9ba8d"/>
+				<reportElement x="239" y="17" width="20" height="18" uuid="f52306a8-039c-4f8e-8880-376482c9ba8d"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[%]]></text>
 			</staticText>
 			<textField pattern="#,##0.00">
-				<reportElement x="189" y="29" width="70" height="22" uuid="c3750d88-09ea-479c-8bad-c38d8e8bb71f"/>
+				<reportElement x="189" y="36" width="70" height="22" uuid="c3750d88-09ea-479c-8bad-c38d8e8bb71f"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="114" y="29" width="66" height="22" uuid="9ab3b42b-e989-406b-89de-9fd3257f6118"/>
+				<reportElement x="114" y="36" width="66" height="22" uuid="9ab3b42b-e989-406b-89de-9fd3257f6118"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Grand Total :]]></text>
 			</staticText>
 			<line>
-				<reportElement x="83" y="59" width="189" height="1" uuid="21000f17-0d71-46dc-942b-7ec422114627"/>
+				<reportElement x="83" y="66" width="189" height="1" uuid="21000f17-0d71-46dc-942b-7ec422114627"/>
 				<graphicElement>
 					<pen lineWidth="3.0"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="82" y="3" width="189" height="1" uuid="760fdcd8-986a-4cee-bdb0-9af9aba0f752"/>
+				<reportElement x="82" y="10" width="189" height="1" uuid="760fdcd8-986a-4cee-bdb0-9af9aba0f752"/>
 				<graphicElement>
 					<pen lineWidth="1.0" lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="-9" y="65" width="281" height="1" uuid="2a7a9ce6-0166-42f0-86ca-9a871a8602b4"/>
+				<reportElement x="-9" y="72" width="281" height="1" uuid="2a7a9ce6-0166-42f0-86ca-9a871a8602b4"/>
 				<graphicElement>
 					<pen lineWidth="1.0"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="81" y="70" width="100" height="28" uuid="3485bcff-0713-44de-8ab5-77153c258caa"/>
+				<reportElement x="81" y="77" width="100" height="23" uuid="3485bcff-0713-44de-8ab5-77153c258caa"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>

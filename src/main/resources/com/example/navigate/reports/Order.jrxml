@@ -110,58 +110,55 @@ FROM mawellaresort.invoice
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="148" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="13" width="258" height="27" uuid="a8e76d07-1ee9-4218-9151-a86185670fd0"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="16" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Mawella Beach Resort]]></text>
-			</staticText>
+		<band height="174" splitType="Stretch">
 			<line>
-				<reportElement x="-11" y="64" width="281" height="1" uuid="34721397-4a70-485f-a3e7-35fcfc3e05b9"/>
+				<reportElement x="-11" y="73" width="281" height="1" uuid="34721397-4a70-485f-a3e7-35fcfc3e05b9"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="79" y="72" width="100" height="19" uuid="c90444df-9f31-4cea-bc6e-54b54a01ff63"/>
+				<reportElement x="79" y="83" width="100" height="19" uuid="c90444df-9f31-4cea-bc6e-54b54a01ff63"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Order To Prepare]]></text>
 			</staticText>
+			<image>
+				<reportElement x="71" y="-10" width="119" height="84" uuid="7557b249-4f89-4e93-9098-d7e78bfb94d7"/>
+				<imageExpression><![CDATA["src/main/resources/com/example/navigate/images/Hotel-logo.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
 		<band splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="-51" width="60" height="13" uuid="12e02377-1ade-42ba-a2a3-87464db7ccdc"/>
+				<reportElement x="0" y="-61" width="60" height="13" uuid="12e02377-1ade-42ba-a2a3-87464db7ccdc"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<text><![CDATA[Date :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="-35" width="60" height="13" uuid="920cfdb6-2801-4fde-976f-abe209fd6cc0"/>
+				<reportElement x="0" y="-45" width="60" height="13" uuid="920cfdb6-2801-4fde-976f-abe209fd6cc0"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<text><![CDATA[Invoice No :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="-19" width="60" height="13" uuid="9a7b4cf7-3232-4345-acdc-4ef382222d3a"/>
+				<reportElement x="0" y="-29" width="60" height="13" uuid="9a7b4cf7-3232-4345-acdc-4ef382222d3a"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<text><![CDATA[Steward ID :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="150" y="-51" width="108" height="13" uuid="7e74069e-41c2-4ef0-8916-5fd8f42a711d"/>
+				<reportElement x="150" y="-61" width="108" height="13" uuid="7e74069e-41c2-4ef0-8916-5fd8f42a711d"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{purchesed_date}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="150" y="-35" width="108" height="13" uuid="c99ff871-674f-48f6-9725-cdc19239452a"/>
+				<reportElement x="150" y="-45" width="108" height="13" uuid="c99ff871-674f-48f6-9725-cdc19239452a"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{invoice_no}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="150" y="-19" width="108" height="13" uuid="3164d4ea-7f53-4da8-90d1-4cc0ebce8807"/>
+				<reportElement x="150" y="-29" width="108" height="13" uuid="3164d4ea-7f53-4da8-90d1-4cc0ebce8807"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{user_id}]]></textFieldExpression>
 			</textField>
