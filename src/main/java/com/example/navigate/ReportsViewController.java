@@ -1,6 +1,7 @@
 package com.example.navigate;
 
 import com.example.navigate.database.MySQL;
+import com.example.navigate.model.InvoiceItem;
 import com.example.navigate.model.Invoices;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -36,7 +37,7 @@ public class ReportsViewController implements Initializable {
     public JFXTextField txtGrandTotal;
 
     @FXML
-    private TableView<Invoices> InvoicesTable;
+    private TableView<Invoices> reportTable;
 
     @FXML
     private TableColumn<Invoices, String> tc_No;
@@ -60,6 +61,8 @@ public class ReportsViewController implements Initializable {
     private TableColumn<Invoices, String> tc_Amount;
     ObservableList<Invoices> list = FXCollections.observableArrayList();
 
+    private double fullAmount = 0;
+
 
     private void tableStructure() {
         tc_No.setCellValueFactory(new PropertyValueFactory<Invoices, String>("No"));
@@ -70,7 +73,7 @@ public class ReportsViewController implements Initializable {
         tc_Discount.setCellValueFactory(new PropertyValueFactory<Invoices, String>("Discount"));
         tc_Amount.setCellValueFactory(new PropertyValueFactory<Invoices, String>("Amount"));
 
-        InvoicesTable.setItems(list);
+        reportTable.setItems(list);
     }
 
 
@@ -88,6 +91,8 @@ public class ReportsViewController implements Initializable {
     }
 
     public void onSelectInvoices(LocalDate date) {
+        list.clear();
+        fullAmount = 0;
         try {
             int rowNumber = 0;
             Double grandTotal = Double.valueOf(0);
@@ -104,9 +109,10 @@ public class ReportsViewController implements Initializable {
 
                 grandTotal += Double.valueOf(Amount);
 
-                list.add(new Invoices(String.valueOf(rowNumber),invoiceNo,purchesedDate,Steward_ID,Steward_Name,Discount,Amount));
+                list.add(new Invoices(String.valueOf(rowNumber), invoiceNo, purchesedDate, Steward_ID, Steward_Name, Discount, Amount));
             }
 
+            fullAmount = grandTotal;
             txtTotalInvoices.setText(String.valueOf(rowNumber));
             txtGrandTotal.setText(String.valueOf(grandTotal));
 
@@ -119,18 +125,38 @@ public class ReportsViewController implements Initializable {
     public void onPrintReport(ActionEvent event) {
         try {
 
+            ObservableList<Invoices> items = reportTable.getItems();
+            Double cost = Double.valueOf(0);
+            int qty = 0;
+            Double profit = Double.valueOf(0);
+
+            for (Invoices item : items) {
+                ResultSet resultSet = MySQL.Search("SELECT * FROM `invoice_item` INNER JOIN `food` ON `food`.`serial_no`=`invoice_item`.`food_serial_no` WHERE `invoice_no`='" + item.getInvoice_No() + "' ");
+
+                while (resultSet.next()) {
+                    qty += resultSet.getDouble("qty");
+                    cost += (resultSet.getDouble("cost") * resultSet.getDouble("qty"));
+
+                }
+
+            }
+
+            System.out.println("qty " + qty + " , " + cost + " , " + fullAmount);
+            profit = (fullAmount - cost);
+
             JasperDesign design = JRXmlLoader.load("src/main/resources/com/example/navigate/reports/report/Summery.jrxml");
             JRDesignQuery designQuery = new JRDesignQuery();
-            designQuery.setText("SELECT * FROM `invoice` WHERE `purchesed_date`='"+txtDateChooser.getValue()+"' ");
+            designQuery.setText("SELECT * FROM `invoice` WHERE `purchesed_date`='" + txtDateChooser.getValue() + "' ");
             design.setQuery(designQuery);
-            HashMap<String,Object> param = new HashMap<>();
-            param.put("Parameter1","0.0");
-            param.put("Parameter2","0.0");
-            param.put("Parameter3","0.0");
+            HashMap<String, Object> param = new HashMap<>();
+            param.put("Parameter1", String.valueOf(fullAmount));
+            param.put("Parameter2", String.valueOf(cost));
+            param.put("Parameter3", String.valueOf(profit));
             param.put("subReport", "src/main/resources/com/example/navigate/reports/report/InvoiceItem.jasper");
             JasperReport jasperReport = JasperCompileManager.compileReport(design);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, MySQL.getInstance());
             JasperViewer.viewReport(jasperPrint, false);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

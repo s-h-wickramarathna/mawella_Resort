@@ -283,7 +283,7 @@ public class InvoiceViewController implements Initializable {
 
             if (resultSet.next()) {
                 txtSerialNo.setText(resultSet.getString("serial_no"));
-                txtUnitPrice.setText(resultSet.getString("cost"));
+                txtUnitPrice.setText(resultSet.getString("selling_price"));
                 txtQty.setText("1");
             }
 
@@ -363,8 +363,8 @@ public class InvoiceViewController implements Initializable {
                     Double txtTotal = Double.parseDouble(txtTotalPrice.getText());
                     Double txtdiscount = Double.parseDouble(txtDiscount.getText());
 
-                    Double grandTotal = ((txtdiscount * txtTotal) / 100);
-                    GrandPriceLabel.setText(String.valueOf(grandTotal + txtTotal));
+                    Double discount = ((txtdiscount * txtTotal) / 100);
+                    GrandPriceLabel.setText(String.valueOf(txtTotal-discount ));
                 }
             }
 

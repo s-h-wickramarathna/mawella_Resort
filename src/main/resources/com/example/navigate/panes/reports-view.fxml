@@ -26,7 +26,7 @@
             <Font name="Calibri Bold" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="InvoicesTable" layoutX="14.0" layoutY="171.0" prefHeight="354.0" prefWidth="972.0">
+      <TableView fx:id="reportTable" layoutX="14.0" layoutY="171.0" prefHeight="354.0" prefWidth="972.0">
         <columns>
           <TableColumn fx:id="tc_No" prefWidth="39.0" text="No" />
             <TableColumn fx:id="tc_InvoiceNo" prefWidth="111.0" text="Invoice No" />
