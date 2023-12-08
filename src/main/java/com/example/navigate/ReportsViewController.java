@@ -127,10 +127,13 @@ public class ReportsViewController implements Initializable {
 
             ObservableList<Invoices> items = reportTable.getItems();
             Double cost = Double.valueOf(0);
+            boolean istableEmpty = false;
+
             int qty = 0;
             Double profit = Double.valueOf(0);
 
             for (Invoices item : items) {
+                istableEmpty = true;
                 ResultSet resultSet = MySQL.Search("SELECT * FROM `invoice_item` INNER JOIN `food` ON `food`.`serial_no`=`invoice_item`.`food_serial_no` WHERE `invoice_no`='" + item.getInvoice_No() + "' ");
 
                 while (resultSet.next()) {
@@ -141,21 +144,25 @@ public class ReportsViewController implements Initializable {
 
             }
 
-            System.out.println("qty " + qty + " , " + cost + " , " + fullAmount);
-            profit = (fullAmount - cost);
+            if (istableEmpty){
+                profit = (fullAmount - cost);
 
-            JasperDesign design = JRXmlLoader.load("src/main/resources/com/example/navigate/reports/report/Summery.jrxml");
-            JRDesignQuery designQuery = new JRDesignQuery();
-            designQuery.setText("SELECT * FROM `invoice` WHERE `purchesed_date`='" + txtDateChooser.getValue() + "' ");
-            design.setQuery(designQuery);
-            HashMap<String, Object> param = new HashMap<>();
-            param.put("Parameter1", String.valueOf(fullAmount));
-            param.put("Parameter2", String.valueOf(cost));
-            param.put("Parameter3", String.valueOf(profit));
-            param.put("subReport", "src/main/resources/com/example/navigate/reports/report/InvoiceItem.jasper");
-            JasperReport jasperReport = JasperCompileManager.compileReport(design);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, MySQL.getInstance());
-            JasperViewer.viewReport(jasperPrint, false);
+                JasperDesign design = JRXmlLoader.load("src/main/resources/com/example/navigate/reports/report/Summery.jrxml");
+                JRDesignQuery designQuery = new JRDesignQuery();
+                designQuery.setText("SELECT * FROM `invoice` WHERE `purchesed_date`='" + txtDateChooser.getValue() + "' ");
+                design.setQuery(designQuery);
+                HashMap<String, Object> param = new HashMap<>();
+                param.put("Parameter1", String.valueOf(fullAmount));
+                param.put("Parameter2", String.valueOf(cost));
+                param.put("Parameter3", String.valueOf(profit));
+                param.put("subReport", "src/main/resources/com/example/navigate/reports/report/InvoiceItem.jasper");
+                JasperReport jasperReport = JasperCompileManager.compileReport(design);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, MySQL.getInstance());
+                JasperViewer.viewReport(jasperPrint, false);
+
+            }else {
+                important.showWarningAlert("Nothing To Generate").show();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
