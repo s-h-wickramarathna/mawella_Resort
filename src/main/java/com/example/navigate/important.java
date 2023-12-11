@@ -3,6 +3,7 @@ package com.example.navigate;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.stage.StageStyle;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,6 +38,7 @@ public class important {
     public static Alert showErrorAlert(String msg){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Validation Error");
+        alert.initStyle(StageStyle.UTILITY);
         ButtonType type = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
         alert.setContentText(msg);
         return alert;
@@ -45,6 +47,7 @@ public class important {
     public static Alert showSuccessAlert(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Task Completed");
+        alert.initStyle(StageStyle.UTILITY);
         ButtonType type = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
         alert.setContentText("SuccessFully Completed");
         return alert;
@@ -52,6 +55,7 @@ public class important {
     public static Alert showWarningAlert(String msg){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
+        alert.initStyle(StageStyle.UTILITY);
         ButtonType type = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
         alert.setContentText(msg);
         return alert;

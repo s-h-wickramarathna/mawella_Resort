@@ -13,10 +13,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -35,6 +38,7 @@ import java.util.ResourceBundle;
 import static com.example.navigate.important.*;
 
 import net.sf.jasperreports.engine.design.JasperDesign;
+import org.controlsfx.glyphfont.FontAwesome;
 
 public class InvoiceViewController implements Initializable {
 
@@ -439,13 +443,13 @@ public class InvoiceViewController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Payment Appointment");
             alert.setContentText("Are You Sure Do You Want Make The Payment");
-
+            alert.initStyle(StageStyle.UTILITY);
             ButtonType btnOk = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
             ButtonType btnCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
             alert.getButtonTypes().setAll(btnOk, btnCancel);
 
             // Show the confirmation alert and wait for the user's response
-            java.util.Optional<ButtonType> result = alert.showAndWait();
+            Optional<ButtonType> result = alert.showAndWait();
 
             // Handle the user's response
             if (result.isPresent() && result.get() == btnOk) {
