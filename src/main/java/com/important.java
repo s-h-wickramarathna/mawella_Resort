@@ -1,4 +1,4 @@
-package com.example.navigate;
+package com;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;

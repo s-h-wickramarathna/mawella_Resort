@@ -110,23 +110,23 @@ FROM mawellaresort.invoice
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="174" splitType="Stretch">
+		<band height="292" splitType="Stretch">
 			<line>
-				<reportElement x="-11" y="73" width="281" height="1" uuid="34721397-4a70-485f-a3e7-35fcfc3e05b9"/>
+				<reportElement x="-9" y="190" width="281" height="1" uuid="34721397-4a70-485f-a3e7-35fcfc3e05b9"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="79" y="83" width="100" height="19" uuid="c90444df-9f31-4cea-bc6e-54b54a01ff63"/>
-				<textElement>
+				<reportElement x="81" y="200" width="100" height="19" uuid="c90444df-9f31-4cea-bc6e-54b54a01ff63"/>
+				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Order To Prepare]]></text>
+				<text><![CDATA[K . O . T]]></text>
 			</staticText>
 			<image>
-				<reportElement x="71" y="-10" width="119" height="84" uuid="7557b249-4f89-4e93-9098-d7e78bfb94d7"/>
-				<imageExpression><![CDATA["src/main/resources/com/example/navigate/images/Hotel-logo.png"]]></imageExpression>
+				<reportElement x="0" y="0" width="258" height="179" uuid="0752b6ad-d8e7-4ce1-8d27-f120ad5348bc"/>
+				<imageExpression><![CDATA["src/main/resources/com/example/navigate/images/Recipt.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

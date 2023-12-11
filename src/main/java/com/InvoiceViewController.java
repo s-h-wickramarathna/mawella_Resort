@@ -1,7 +1,7 @@
-package com.example.navigate;
+package com;
 
-import com.example.navigate.database.MySQL;
-import com.example.navigate.model.InvoiceItem;
+import com.database.MySQL;
+import com.model.InvoiceItem;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -12,13 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.Image;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -35,10 +31,9 @@ import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static com.example.navigate.important.*;
+import static com.important.*;
 
 import net.sf.jasperreports.engine.design.JasperDesign;
-import org.controlsfx.glyphfont.FontAwesome;
 
 public class InvoiceViewController implements Initializable {
 
@@ -51,7 +46,7 @@ public class InvoiceViewController implements Initializable {
     public JFXTextField txtSerialNo;
     public JFXTextField txtUnitPrice;
     public JFXTextField txtTotalPrice;
-    public JFXTextField txtDiscount;
+    public JFXTextField txtServiceCharge;
     public Label GrandPriceLabel;
     public JFXTextField txtPaidAmount;
     public JFXTextField txtBalance;
@@ -151,6 +146,7 @@ public class InvoiceViewController implements Initializable {
     public void setDefaultValues() {
         txtInvoiceDate.setText(getDate());
         txtInvoiceNumber.setText(getUniqueID());
+        txtServiceCharge.setText("10");
         btnUpdateItem.setDisable(true);
         btnDeleteItem.setDisable(true);
         btnMakePayment.setDisable(true);
@@ -164,7 +160,7 @@ public class InvoiceViewController implements Initializable {
         txtSerialNo.setText("");
         txtUnitPrice.setText("");
         txtTotalPrice.setText("");
-        txtDiscount.setText("0");
+        txtServiceCharge.setText("10");
         GrandPriceLabel.setText("0.0");
         txtPaidAmount.setText("");
         txtBalance.setText("");
@@ -356,19 +352,19 @@ public class InvoiceViewController implements Initializable {
 
     private void getAllCalculationValues() {
         if (!txtTotalPrice.getText().isEmpty()) {
-            if (txtDiscount.getText().isEmpty()) {
+            if (txtServiceCharge.getText().isEmpty()) {
                 GrandPriceLabel.setText(String.valueOf(txtTotalPrice.getText()));
 
             } else {
-                if (!isNumeric(txtDiscount.getText())) {
+                if (!isNumeric(txtServiceCharge.getText())) {
                     showErrorAlert("Invalid Discount").show();
 
                 } else {
                     Double txtTotal = Double.parseDouble(txtTotalPrice.getText());
-                    Double txtdiscount = Double.parseDouble(txtDiscount.getText());
+                    Double serviceCharge = Double.parseDouble(txtServiceCharge.getText());
 
-                    Double discount = ((txtdiscount * txtTotal) / 100);
-                    GrandPriceLabel.setText(String.valueOf(txtTotal-discount ));
+                    Double discount = ((serviceCharge * txtTotal) / 100);
+                    GrandPriceLabel.setText(String.valueOf(txtTotal + discount ));
                 }
             }
 
@@ -456,7 +452,7 @@ public class InvoiceViewController implements Initializable {
 
                 String invoiceNo = txtInvoiceNumber.getText();
                 String invoiceDate = txtInvoiceDate.getText();
-                String invoiceDiscount = txtDiscount.getText().isEmpty() ? "0" : txtDiscount.getText();
+                String invoiceDiscount = txtServiceCharge.getText().isEmpty() ? "10" : txtServiceCharge.getText();
                 String invoiceGrandTotal = GrandPriceLabel.getText();
                 String stewardID = stewardMap.get(stewardsComboBox.getValue());
 

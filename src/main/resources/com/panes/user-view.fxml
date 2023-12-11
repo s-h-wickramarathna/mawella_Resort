@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../styles/styles.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.navigate.UserViewController">
+<Pane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/styles.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.UserViewController">
     <BorderPane.margin>
         <Insets bottom="10.0" right="10.0" top="10.0" />
     </BorderPane.margin>

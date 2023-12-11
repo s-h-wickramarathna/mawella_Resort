@@ -1,4 +1,4 @@
-package com.example.navigate;
+package com;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

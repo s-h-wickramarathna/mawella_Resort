@@ -1,8 +1,7 @@
-package com.example.navigate;
+package com;
 
-import com.example.navigate.database.MySQL;
-import com.example.navigate.model.InvoiceItem;
-import com.example.navigate.model.Invoices;
+import com.database.MySQL;
+import com.model.Invoices;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;

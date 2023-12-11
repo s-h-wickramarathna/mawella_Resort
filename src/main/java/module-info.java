@@ -1,4 +1,4 @@
-module com.example.navigate {
+module com {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.controlsfx.controls;
@@ -6,9 +6,9 @@ module com.example.navigate {
     requires com.jfoenix;
     requires jasperreports;
 
-    opens com.example.navigate to javafx.fxml;
-    exports com.example.navigate;
-    exports com.example.navigate.database;
-    opens com.example.navigate.database to javafx.fxml;
-    opens com.example.navigate.model to javafx.base;
+    opens com to javafx.fxml;
+    exports com;
+    exports com.database;
+    opens com.database to javafx.fxml;
+    opens com.model to javafx.base;
 }

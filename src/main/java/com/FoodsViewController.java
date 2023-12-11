@@ -1,8 +1,8 @@
-package com.example.navigate;
+package com;
 
-import com.example.navigate.database.MySQL;
-import com.example.navigate.model.Food;
-import com.example.navigate.model.InvoiceItem;
+import com.database.MySQL;
+import com.jfoenix.controls.JFXDialog;
+import com.model.Food;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -10,26 +10,33 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.SortEvent;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
-import static com.example.navigate.important.*;
+import static com.important.*;
 
 public class FoodsViewController implements Initializable {
 
+    @FXML
+    private Stage stage;
     @FXML
     private JFXTextField txtSerialNo;
 
@@ -76,7 +83,7 @@ public class FoodsViewController implements Initializable {
     private TableColumn<Food, String> updatedAt_Column;
 
     @FXML
-    private JFXButton btnFoodUpdate, btnFoodAdd, btnFoodDelete;
+    private JFXButton btnFoodUpdate, btnFoodAdd, btnFoodDelete, btnManageFoodCategory;
 
     @FXML
     private void setDefaultValues() {
@@ -213,11 +220,10 @@ public class FoodsViewController implements Initializable {
 
     @FXML
     private void onSelectTable(MouseEvent event) {
-        if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+        if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
             int row = FoodTable.getSelectionModel().getSelectedIndex();
 
             if (row != -1) {
-                FoodTable.setDisable(true);
                 txtSerialNo.setText(String.valueOf(serialNo_Column.getCellData(row)));
                 txtFoodName.setText(String.valueOf(foodName_Column.getCellData(row)));
                 txtCost.setText(String.valueOf(unitPrice_Column.getCellData(row)));
@@ -281,4 +287,16 @@ public class FoodsViewController implements Initializable {
         String search = txtSearchFoods.getText();
         loadFoodTable(search);
     }
+
+
+  public void onManagefoodCategory(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("JDialog/category.fxml"));
+
+      Stage stage = new Stage();
+      stage.initModality(Modality.APPLICATION_MODAL);
+      stage.setTitle("second");
+      stage.setScene(new Scene(root));
+      stage.show();
+  }
+
 }

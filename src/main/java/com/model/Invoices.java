@@ -1,4 +1,4 @@
-package com.example.navigate.model;
+package com.model;
 
 public class Invoices {
 

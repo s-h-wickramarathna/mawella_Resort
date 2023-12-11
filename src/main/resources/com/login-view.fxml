@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="529.0" styleClass="main-color" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.navigate.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="529.0" styleClass="main-color" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.HelloController">
    <children>
       <ImageView fitHeight="135.0" fitWidth="211.0" layoutX="159.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/Hotel-logo.png" />
+            <Image url="@../images/Hotel-logo.png" />
          </image>
       </ImageView>
       <Label layoutX="89.0" layoutY="227.0" text="Username: ">

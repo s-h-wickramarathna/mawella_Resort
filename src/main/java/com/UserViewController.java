@@ -1,8 +1,7 @@
-package com.example.navigate;
+package com;
 
-import com.example.navigate.database.MySQL;
-import com.example.navigate.model.Food;
-import com.example.navigate.model.User;
+import com.database.MySQL;
+import com.model.User;
 import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -130,7 +129,7 @@ public class UserViewController implements Initializable {
             tc_CreatedAt.setCellValueFactory(new PropertyValueFactory<User, String>("UserCreatedAt"));
             tc_UpdatedAt.setCellValueFactory(new PropertyValueFactory<User, String>("UserUpdatedAt"));
 
-            ResultSet resultSet = MySQL.Search("SELECT * FROM `user` INNER JOIN `user_type` ON `user_type`.`user_type_Id`=`user`.`user_type_id` WHERE `user_id` LIKE '%" + search + "%' OR `fullName` LIKE '%" + search + "%' ");
+            ResultSet resultSet = MySQL.Search("SELECT * FROM `user` INNER JOIN `user_type` ON `user_type`.`user_type_Id`=`user`.`user_type_id` WHERE `user_id`!='#f1e802' AND ( `user_id` LIKE '%" + search + "%' OR `fullName` LIKE '%" + search + "%') ");
             while (resultSet.next()) {
                 row += 1;
                 String userId = resultSet.getString("user_id");
