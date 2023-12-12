@@ -115,7 +115,7 @@ public class InvoiceViewController implements Initializable {
 
     private void stewardLoad() {
         try {
-            ResultSet resultSet = MySQL.Search("SELECT * FROM `user` WHERE `user_type_id`='2' ");
+            ResultSet resultSet = MySQL.Search("SELECT * FROM `user` WHERE `status_id`='1' AND `user_id`!='#f1e802' ");
             while (resultSet.next()) {
                 String stewardName = resultSet.getString("fullName");
                 stewardList.add(stewardName);

@@ -2,14 +2,15 @@ package com.model;
 
 public class Food {
 
-    public String No, SerialNo, FoodName, Cost, Description, SellingPrice, CreatedAt, UpdatedAt;
+    public String No, SerialNo, FoodName, Cost, Description, SellingPrice, Category, CreatedAt, UpdatedAt;
 
-    public Food(String no, String serialNo, String foodName, String description, String cost, String sellingPrice, String createdAt, String updatedAt) {
+    public Food(String no, String serialNo, String foodName, String description, String cost, String sellingPrice, String category, String createdAt, String updatedAt) {
         No = no;
         SerialNo = serialNo;
         FoodName = foodName;
         Cost = cost;
         SellingPrice = sellingPrice;
+        Category = category;
         Description = description;
         CreatedAt = createdAt;
         UpdatedAt = updatedAt;
@@ -61,6 +62,14 @@ public class Food {
 
     public void setSellingPrice(String sellingPrice) {
         SellingPrice = sellingPrice;
+    }
+
+    public String getCategory() {
+        return Category;
+    }
+
+    public void setCategory(String category) {
+        Category = category;
     }
 
     public String getCreatedAt() {

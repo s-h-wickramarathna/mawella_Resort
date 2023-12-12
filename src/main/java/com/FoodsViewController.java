@@ -1,11 +1,8 @@
 package com;
 
 import com.database.MySQL;
-import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.*;
 import com.model.Food;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,10 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
@@ -29,11 +23,15 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static com.important.*;
 
 public class FoodsViewController implements Initializable {
+
+    public JFXComboBox<String> categoryComboBox;
 
     @FXML
     private Stage stage;
@@ -72,6 +70,8 @@ public class FoodsViewController implements Initializable {
 
     @FXML
     private TableColumn<Food, String> sellingPrice_Column;
+    @FXML
+    public TableColumn<Food, String> category_Column;
 
     @FXML
     private TableColumn<Food, String> unitPrice_Column;
@@ -85,9 +85,29 @@ public class FoodsViewController implements Initializable {
     @FXML
     private JFXButton btnFoodUpdate, btnFoodAdd, btnFoodDelete, btnManageFoodCategory;
 
+    HashMap<String, Integer> categoryMap = new HashMap<>();
+    ObservableList<String> categoryList = FXCollections.observableArrayList();
+
     @FXML
     private void setDefaultValues() {
         txtSerialNo.setText(getUniqueID());
+    }
+
+    private void loadUserTypeComboBox() {
+        try {
+
+            ResultSet resultSet = MySQL.Search("SELECT * FROM `category`");
+            while (resultSet.next()) {
+                categoryList.add(resultSet.getString("name"));
+                categoryMap.put(resultSet.getString("name"), resultSet.getInt("id"));
+            }
+
+            categoryComboBox.setItems(categoryList);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
     }
 
     private void loadFoodTable(String search) {
@@ -98,13 +118,14 @@ public class FoodsViewController implements Initializable {
             serialNo_Column.setCellValueFactory(new PropertyValueFactory<Food, String>("SerialNo"));
             foodName_Column.setCellValueFactory(new PropertyValueFactory<Food, String>("FoodName"));
             sellingPrice_Column.setCellValueFactory(new PropertyValueFactory<Food, String>("SellingPrice"));
+            category_Column.setCellValueFactory(new PropertyValueFactory<Food, String>("Category"));
             description_Column.setCellValueFactory(new PropertyValueFactory<Food, String>("Description"));
             unitPrice_Column.setCellValueFactory(new PropertyValueFactory<Food, String>("Cost"));
             createdAt_Column.setCellValueFactory(new PropertyValueFactory<Food, String>("CreatedAt"));
             updatedAt_Column.setCellValueFactory(new PropertyValueFactory<Food, String>("UpdatedAt"));
 
 
-            ResultSet resultSet = MySQL.Search("SELECT * FROM `food` WHERE `food_name` LIKE '%"+search+"%' OR `serial_no` LIKE '%"+search+"%' ORDER BY `created_At` DESC");
+            ResultSet resultSet = MySQL.Search("SELECT * FROM `food` INNER JOIN `category` ON `category`.`id`=`food`.`category_id` WHERE `food_name` LIKE '%"+search+"%' OR `serial_no` LIKE '%"+search+"%' ORDER BY `created_At` DESC");
             int x = 0;
             while (resultSet.next()) {
                 String no = String.valueOf(x += 1);
@@ -112,11 +133,12 @@ public class FoodsViewController implements Initializable {
                 String food_name = resultSet.getString("food_name");
                 String cost = resultSet.getString("cost");
                 String selling_price = resultSet.getString("selling_price");
+                String category = resultSet.getString("name");
                 String description = resultSet.getString("description");
                 String created_At = resultSet.getString("created_At");
                 String updated_At = resultSet.getString("updated_At");
 
-                foodTableList.add(new Food(no, serialNo, food_name, description, cost, selling_price, created_At, updated_At));
+                foodTableList.add(new Food(no, serialNo, food_name, description, cost, selling_price, category, created_At, updated_At));
             }
             FoodTable.setItems(foodTableList);
 
@@ -125,42 +147,62 @@ public class FoodsViewController implements Initializable {
         }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setDefaultValues();
+        loadFoodTable("");
+        loadUserTypeComboBox();
+    }
+
     private String validateFoodFields() {
 
         if (txtFoodName.getText().isEmpty()) {
             txtFoodName.getStyleClass().add("textField-error");
             txtCost.getStyleClass().remove("textField-error");
             txtSellingPrice.getStyleClass().remove("textField-error");
+            categoryComboBox.getStyleClass().remove("textField-error");
             return "Food Name Must Required";
 
         } else if (txtCost.getText().isEmpty()) {
             txtCost.getStyleClass().add("textField-error");
             txtFoodName.getStyleClass().remove("textField-error");
             txtSellingPrice.getStyleClass().remove("textField-error");
+            categoryComboBox.getStyleClass().remove("textField-error");
             return "Food Cost Must Required";
 
         } else if (!isNumeric(txtCost.getText())) {
             txtCost.getStyleClass().add("textField-error");
             txtFoodName.getStyleClass().remove("textField-error");
             txtSellingPrice.getStyleClass().remove("textField-error");
+            categoryComboBox.getStyleClass().remove("textField-error");
             return "Invalid Food Cost";
 
         } else if (txtSellingPrice.getText().isEmpty()) {
             txtSellingPrice.getStyleClass().add("textField-error");
             txtCost.getStyleClass().remove("textField-error");
             txtFoodName.getStyleClass().remove("textField-error");
-            return "Food Cost Must Required";
+            categoryComboBox.getStyleClass().remove("textField-error");
+            return "Food Selling Price Must Required";
 
         } else if (!isNumeric(txtSellingPrice.getText())) {
             txtSellingPrice.getStyleClass().add("textField-error");
             txtCost.getStyleClass().remove("textField-error");
             txtFoodName.getStyleClass().remove("textField-error");
+            categoryComboBox.getStyleClass().remove("textField-error");
             return "Invalid Selling Price";
+
+        } else if (categoryComboBox.getValue() == null) {
+            categoryComboBox.getStyleClass().add("textField-error");
+            txtSellingPrice.getStyleClass().remove("textField-error");
+            txtCost.getStyleClass().remove("textField-error");
+            txtFoodName.getStyleClass().remove("textField-error");
+            return "Food Category Must Required";
 
         }
         txtSellingPrice.getStyleClass().remove("textField-error");
         txtCost.getStyleClass().remove("textField-error");
         txtFoodName.getStyleClass().remove("textField-error");
+        categoryComboBox.getStyleClass().remove("textField-error");
         return null;
     }
 
@@ -179,13 +221,6 @@ public class FoodsViewController implements Initializable {
         btnFoodDelete.setDisable(true);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        setDefaultValues();
-        loadFoodTable("");
-    }
-
-
     public void onAddNewFood(ActionEvent event) {
         String error = validateFoodFields();
         if (error != null) {
@@ -200,8 +235,8 @@ public class FoodsViewController implements Initializable {
                     showErrorAlert("Value Is Already Exist").show();
 
                 } else {
-                    MySQL.Iud("INSERT INTO `food`(`serial_no`,`food_name`, `cost`, `selling_price`, `description`, `created_At`)" +
-                            "VALUES('" + txtSerialNo.getText() + "','" + txtFoodName.getText() + "','" + txtCost.getText() + "','" + txtSellingPrice.getText() + "','" + txtDescription.getText() + "','" + getDate() + "') ");
+                    MySQL.Iud("INSERT INTO `food`(`serial_no`,`food_name`, `cost`, `selling_price`, `description`, `created_At`, `category_id`)" +
+                            "VALUES('" + txtSerialNo.getText() + "','" + txtFoodName.getText() + "','" + txtCost.getText() + "','" + txtSellingPrice.getText() + "','" + txtDescription.getText() + "','" + getDate() + "','"+categoryMap.get(categoryComboBox.getValue())+"') ");
 
                     showSuccessAlert().show();
                     resetAll();
@@ -228,6 +263,7 @@ public class FoodsViewController implements Initializable {
                 txtFoodName.setText(String.valueOf(foodName_Column.getCellData(row)));
                 txtCost.setText(String.valueOf(unitPrice_Column.getCellData(row)));
                 txtSellingPrice.setText(String.valueOf(sellingPrice_Column.getCellData(row)));
+                categoryComboBox.setValue(String.valueOf(category_Column.getCellData(row)));
                 txtDescription.setText(String.valueOf(description_Column.getCellData(row)));
 
                 txtFoodName.requestFocus();
@@ -256,7 +292,7 @@ public class FoodsViewController implements Initializable {
                     showErrorAlert("Value Is Already Exist").show();
 
                 } else {
-                    MySQL.Iud("UPDATE `food` SET `food_name`='" + txtFoodName.getText() + "', `cost`='" + txtCost.getText() + "',`description`='" + txtDescription.getText() + "',`updated_At`='" + getDate() + "' WHERE `serial_no` = '" + txtSerialNo.getText() + "' ");
+                    MySQL.Iud("UPDATE `food` SET `food_name`='" + txtFoodName.getText() + "', `cost`='" + txtCost.getText() + "',`description`='" + txtDescription.getText() + "',`updated_At`='" + getDate() + "', `category_id`='"+categoryMap.get(categoryComboBox.getValue())+"' WHERE `serial_no` = '" + txtSerialNo.getText() + "' ");
                     showSuccessAlert().show();
                     resetAll();
                     loadFoodTable(txtSearchFoods.getText());
@@ -271,10 +307,25 @@ public class FoodsViewController implements Initializable {
     }
 
     public void onFoodDelete(ActionEvent event) {
-        MySQL.Iud("DELETE FROM `food` WHERE `serial_no`='" + txtSerialNo.getText() + "' ");
-        showSuccessAlert().show();
-        resetAll();
-        loadFoodTable("");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Food Delete Confirmation");
+        alert.setContentText("Are You Sure Do You Want To Delete This Food.");
+        alert.initStyle(StageStyle.UTILITY);
+        ButtonType btnOk = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        ButtonType btnCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(btnOk, btnCancel);
+
+        // Show the confirmation alert and wait for the user's response
+        Optional<ButtonType> result = alert.showAndWait();
+
+        // Handle the user's response
+        if (result.isPresent() && result.get() == btnOk) {
+            MySQL.Iud("DELETE FROM `food` WHERE `serial_no`='" + txtSerialNo.getText() + "' ");
+            showSuccessAlert().show();
+            resetAll();
+            loadFoodTable("");
+        }
+
     }
 
     public void onCancelAll(ActionEvent event) {
@@ -290,11 +341,11 @@ public class FoodsViewController implements Initializable {
 
 
   public void onManagefoodCategory(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("JDialog/category.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("JDialog/categoryDialog.fxml"));
 
       Stage stage = new Stage();
       stage.initModality(Modality.APPLICATION_MODAL);
-      stage.setTitle("second");
+      stage.initStyle(StageStyle.UNDECORATED);
       stage.setScene(new Scene(root));
       stage.show();
   }

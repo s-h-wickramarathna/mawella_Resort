@@ -8,18 +8,20 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static com.important.showSuccessAlert;
 
 public class UserViewController implements Initializable {
     @FXML
@@ -316,10 +318,25 @@ public class UserViewController implements Initializable {
     }
 
     public void onDeleteUser(ActionEvent event) {
-        MySQL.Iud("DELETE FROM `user` WHERE `user_id`='" + txtUserID.getText() + "' ");
-        important.showSuccessAlert().show();
-        loadUserTable(txtSearchUsers.getText());
-        resetAll();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("User Delete Confirmation");
+        alert.setContentText("Are You Sure Do You Want To Delete This User.");
+        alert.initStyle(StageStyle.UTILITY);
+        ButtonType btnOk = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        ButtonType btnCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(btnOk, btnCancel);
+
+        // Show the confirmation alert and wait for the user's response
+        Optional<ButtonType> result = alert.showAndWait();
+
+        // Handle the user's response
+        if (result.isPresent() && result.get() == btnOk) {
+            MySQL.Iud("DELETE FROM `user` WHERE `user_id`='" + txtUserID.getText() + "' ");
+            important.showSuccessAlert().show();
+            loadUserTable(txtSearchUsers.getText());
+            resetAll();
+        }
+
     }
 
     public void tableRowSelected(MouseEvent event) {

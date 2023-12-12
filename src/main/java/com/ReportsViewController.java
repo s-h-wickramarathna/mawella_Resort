@@ -1,6 +1,7 @@
 package com;
 
 import com.database.MySQL;
+import com.jfoenix.controls.JFXComboBox;
 import com.model.Invoices;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -34,6 +35,7 @@ public class ReportsViewController implements Initializable {
     public DatePicker txtDateChooser;
     public JFXTextField txtTotalInvoices;
     public JFXTextField txtGrandTotal;
+    public JFXComboBox<String> reportComboBox;
 
     @FXML
     private TableView<Invoices> reportTable;
@@ -59,9 +61,10 @@ public class ReportsViewController implements Initializable {
     @FXML
     private TableColumn<Invoices, String> tc_Amount;
     ObservableList<Invoices> list = FXCollections.observableArrayList();
-
+    ObservableList<String> reportVeiw = FXCollections.observableArrayList("Daily","Monthly","Yearly");
     private double fullAmount = 0;
 
+    private String fullQuery;
 
     private void tableStructure() {
         tc_No.setCellValueFactory(new PropertyValueFactory<Invoices, String>("No"));
@@ -81,21 +84,53 @@ public class ReportsViewController implements Initializable {
         tableStructure();
         list.clear();
 
+        reportComboBox.setItems(reportVeiw);
+        reportComboBox.setValue("Daily");
+
         txtDateChooser.valueProperty().addListener((observable, oldValue, newValue) -> {
             onSelectInvoices(newValue);
         });
     }
 
     public void onClearAll(ActionEvent event) {
+        reportComboBox.setItems(reportVeiw);
+        reportComboBox.setValue("Daily");
+        list.clear();
+        tableStructure();
+        txtGrandTotal.setText("");
+        txtTotalInvoices.setText("");
     }
 
     public void onSelectInvoices(LocalDate date) {
         list.clear();
         fullAmount = 0;
+
+        String query = "SELECT * FROM `invoice` INNER JOIN `user` ON `user`.`user_id`=`invoice`.`user_id`";
+
+        String[] parts = String.valueOf(date).split("-");
+        String year = parts[0];
+        String month = parts[1];
+        String day = parts[2];
+
+
+        if (reportComboBox.getValue().equals("Daily")){
+            query += "WHERE `purchesed_date`='" + date + "'";
+
+        }
+
+        if (reportComboBox.getValue().equals("Monthly")){
+            query += "WHERE `purchesed_date` LIKE '" + year+"-"+month + "%'";
+        }
+
+        if (reportComboBox.getValue().equals("Yearly")){
+            query += "WHERE `purchesed_date` LIKE '" + year +"%'";
+        }
+
+        fullQuery = query;
         try {
             int rowNumber = 0;
             Double grandTotal = Double.valueOf(0);
-            ResultSet resultSet = MySQL.Search("SELECT * FROM `invoice` INNER JOIN `user` ON `user`.`user_id`=`invoice`.`user_id` WHERE `purchesed_date`='" + date + "' ");
+            ResultSet resultSet = MySQL.Search(fullQuery);
 
             while (resultSet.next()) {
                 rowNumber += 1;
@@ -128,12 +163,14 @@ public class ReportsViewController implements Initializable {
             Double cost = Double.valueOf(0);
             boolean istableEmpty = false;
 
+
+
             int qty = 0;
             Double profit = Double.valueOf(0);
 
             for (Invoices item : items) {
                 istableEmpty = true;
-                ResultSet resultSet = MySQL.Search("SELECT * FROM `invoice_item` INNER JOIN `food` ON `food`.`serial_no`=`invoice_item`.`food_serial_no` WHERE `invoice_no`='" + item.getInvoice_No() + "' ");
+                ResultSet resultSet = MySQL.Search(fullQuery);
 
                 while (resultSet.next()) {
                     qty += resultSet.getDouble("qty");
