@@ -165,7 +165,7 @@ CREATE TABLE `user` (
   `update_At` date DEFAULT NULL,
   `deleted_At` date DEFAULT NULL,
   `status_id` int(11) NOT NULL,
-  `password` varchar(25) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -176,7 +176,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('#f1e802','admin','0000000000',1,'2023-12-11',NULL,NULL,1,'123456');
+INSERT INTO `user` VALUES ('#f1e802','admin','0000000000',1,'2023-12-11',NULL,NULL,1,'$2a$10$1U9Ipa1HW9I/t8HyTxmFx.38qQhKfMcheMoB.hskq1FqcNiKrFCyO');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,4 +213,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-12  8:26:22
+-- Dump completed on 2023-12-13 13:49:45
