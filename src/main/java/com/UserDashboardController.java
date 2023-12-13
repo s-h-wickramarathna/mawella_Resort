@@ -8,6 +8,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
@@ -57,6 +58,11 @@ public class UserDashboardController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root));
+        String imagePath = "/images/Hotel-logo.png";
+        URL imageUrl = getClass().getResource(imagePath);
+        Image image = new Image(imageUrl.toExternalForm());
+        stage.getIcons().add(image);
+        stage.setTitle("Admin Login");
         stage.show();
 
         Node source = (Node) event.getSource();

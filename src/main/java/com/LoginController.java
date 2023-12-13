@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -56,6 +57,11 @@ public class LoginController implements Initializable {
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        String imagePath = "/images/Hotel-logo.png";
+        URL imageUrl = getClass().getResource(imagePath);
+        Image image = new Image(imageUrl.toExternalForm());
+        stage.getIcons().add(image);
+        stage.setTitle("User Dashboard");
         stage.show();
         Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
@@ -88,6 +94,11 @@ public class LoginController implements Initializable {
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
+                        String imagePath = "/images/Hotel-logo.png";
+                        URL imageUrl = getClass().getResource(imagePath);
+                        Image image = new Image(imageUrl.toExternalForm());
+                        stage.getIcons().add(image);
+                        stage.setTitle("Admin Dashboard");
                         stage.show();
                         Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
                         stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
