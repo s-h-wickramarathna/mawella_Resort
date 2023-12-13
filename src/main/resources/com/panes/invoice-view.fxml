@@ -44,7 +44,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtFoodItem" layoutX="96.0" layoutY="123.0" prefHeight="25.0" prefWidth="417.0" promptText="Type Food Item ...." />
+      <JFXTextField fx:id="txtFoodItem" layoutX="96.0" layoutY="123.0" onKeyReleased="#ontypeFood" prefHeight="25.0" prefWidth="417.0" promptText="Type Food Item ...." />
       <Label layoutX="536.0" layoutY="126.0" text="Quentity:">
          <font>
             <Font size="14.0" />

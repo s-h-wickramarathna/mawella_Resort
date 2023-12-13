@@ -14,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.StageStyle;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -170,6 +171,13 @@ public class UserViewController implements Initializable {
 
         }
     }
+    private String hashPassword(String plainPassword) {
+        // Generate a salt for better security (you should store the salt along with the hashed password)
+        String salt = BCrypt.gensalt();
+
+        // Hash the password using the generated salt
+        return BCrypt.hashpw(plainPassword, salt);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -302,7 +310,7 @@ public class UserViewController implements Initializable {
                     }
 
                     MySQL.Iud("INSERT INTO `user`(`user_id`, `fullName`, `mobile`, `user_type_id`, `created_At`, `status_id`, `password`) " +
-                            "VALUES('" + userId + "','" + userFullName + "','" + userMobile + "','" + userTypeId + "','" + important.getDate() + "','1','" + userNewPassword + "') ");
+                            "VALUES('" + userId + "','" + userFullName + "','" + userMobile + "','" + userTypeId + "','" + important.getDate() + "','1','" + hashPassword(userNewPassword) + "') ");
 
                     loadUserTable(txtSearchUsers.getText());
                     resetAll();

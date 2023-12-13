@@ -48,7 +48,9 @@ public class AdminDashboardController implements Initializable {
     }
 
     public void closeStage(ActionEvent event) throws IOException {
-        System.exit(0);
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
     public void ManageReport(ActionEvent event) throws IOException {
@@ -70,4 +72,9 @@ public class AdminDashboardController implements Initializable {
         stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
     }
 
+    public void onMinimize(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.setIconified(true);
+    }
 }

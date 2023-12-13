@@ -23,10 +23,13 @@
                 <JFXButton fx:id="btnMainClose" alignment="TOP_RIGHT" buttonType="RAISED" cache="true" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="1236.0" layoutY="8.0" onAction="#closeStage" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: red;" text=" " textAlignment="CENTER" />
                 <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" layoutX="1247.0" layoutY="26.0" size="15" wrappingWidth="9.571428298950195" />
                 <Label layoutX="12.0" layoutY="9.0" text="Resturent &amp; Bar Management (Admin Mode)" />
-            <JFXButton buttonType="RAISED" layoutX="1099.0" layoutY="8.0" onAction="#onSwitchUserMode" prefHeight="24.0" prefWidth="107.0" style="-fx-background-color: blue;" text="Switch User Mode" textFill="WHITE">
+            <JFXButton alignment="CENTER" buttonType="RAISED" cache="true" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="1192.0" layoutY="8.0" onAction="#onMinimize" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: black;" text=" " textAlignment="CENTER" />
+            <FontAwesomeIconView fill="WHITE" glyphName="EYE" layoutX="1203.0" layoutY="27.0" size="15" wrappingWidth="9.571428298950195" />
+            <JFXButton buttonType="RAISED" layoutX="1047.0" layoutY="8.0" onAction="#onSwitchUserMode" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: blue;" text="Swich User Mode" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="12.0" />
-               </font></JFXButton>
+               </font>
+            </JFXButton>
             </children>
         </AnchorPane>
     </top>

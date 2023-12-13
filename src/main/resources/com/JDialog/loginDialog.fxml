@@ -1,69 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
 <?import com.jfoenix.controls.JFXButton?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane cacheShape="false" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="400.0" prefWidth="609.0" scaleShape="false" styleClass="sub-colour" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.LoginController">
+
+<AnchorPane cacheShape="false" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="397.0" prefWidth="452.0" scaleShape="false" styleClass="sub-colour" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LoginController">
     <children>
-        <Pane cacheShape="false" centerShape="false" layoutX="5.0" layoutY="4.0" prefHeight="390.0" prefWidth="600.0" scaleShape="false" styleClass="sideBar-menu-panel">
+        <Pane cacheShape="false" centerShape="false" layoutX="11.0" layoutY="11.0" prefHeight="376.0" prefWidth="431.0" scaleShape="false" styleClass="sideBar-menu-panel">
             <children>
-                <BorderPane fx:id="borderPane" layoutX="4.0" layoutY="4.0" prefHeight="383.0" prefWidth="593.0">
+                <BorderPane fx:id="borderPane" layoutX="4.0" layoutY="4.0" prefHeight="368.0" prefWidth="423.0">
                     <top>
-                        <Pane prefHeight="32.0" prefWidth="593.0" BorderPane.alignment="CENTER">
+                        <Pane prefHeight="32.0" prefWidth="441.0" BorderPane.alignment="CENTER">
                             <children>
-                                <JFXButton fx:id="btnMainClose" alignment="TOP_RIGHT" buttonType="RAISED" cache="true" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="556.0" layoutY="3.0" onAction="#closeStage" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: red;" text=" " textAlignment="CENTER" />
-                                <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" layoutX="568.0" layoutY="20.0" size="15" wrappingWidth="9.571428298950195" />
+                                <JFXButton fx:id="btnMainClose" alignment="TOP_RIGHT" buttonType="RAISED" cache="true" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="384.0" layoutY="3.0" onAction="#closeStage" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: red;" text=" " textAlignment="CENTER" />
+                                <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" layoutX="396.0" layoutY="20.0" size="15" wrappingWidth="9.571428298950195" />
+                        <Label layoutX="11.0" layoutY="8.0" prefHeight="17.0" prefWidth="73.0" text="Admin Login" />
                             </children>
                         </Pane>
                     </top>
                     <center>
-                        <Pane prefHeight="350.0" prefWidth="593.0" styleClass="sub-colour">
-                            <children>
-                                <JFXTextField fx:id="txtCategoryName" layoutX="127.0" layoutY="70.0" prefHeight="25.0" prefWidth="185.0" />
-                                <Label layoutX="27.0" layoutY="74.0" text="Category Name:">
-                                    <font>
-                                        <Font name="Calibri" size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="idLabel" layoutX="468.0" layoutY="39.0" text="ID:">
-                                    <font>
-                                        <Font name="Calibri" size="14.0" />
-                                    </font>
-                                </Label>
-                                <JFXTextField fx:id="txtCategoryId" layoutX="493.0" layoutY="35.0" prefHeight="25.0" prefWidth="86.0" />
-                                <TableView fx:id="CategoryTable" layoutX="20.0" layoutY="117.0" onMouseClicked="#onSelectTable" prefHeight="225.0" prefWidth="421.0">
-                                    <columns>
-                                        <TableColumn fx:id="tc_ID" prefWidth="75.0" text="ID" />
-                                        <TableColumn fx:id="tc_Name" prefWidth="167.0" text="Name" />
-                                        <TableColumn fx:id="tc_CreatedAt" prefWidth="84.0" text="Created At" />
-                                        <TableColumn fx:id="tc_UpdatedAt" prefWidth="94.0" text="Updated At" />
-                                    </columns>
-                                </TableView>
-                                <Label layoutX="22.0" layoutY="3.0" text="Manage Food Category">
-                                    <font>
-                                        <Font name="Calibri Bold" size="18.0" />
-                                    </font>
-                                </Label>
-                                <JFXButton fx:id="btnCategoryAdd" buttonType="RAISED" layoutX="458.0" layoutY="202.0" onAction="#onCategoryAdd" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: green;" text="Add" textFill="WHITE" />
-                                <JFXButton fx:id="btnCategoryUpdate" buttonType="RAISED" layoutX="458.0" layoutY="239.0" onAction="#onCategoryUpdate" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: orange;" text="Update" textFill="WHITE" />
-                                <JFXButton fx:id="btnCategoryDelete" buttonType="RAISED" layoutX="458.0" layoutY="275.0" onAction="#onCategoryDelete" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: black;" text="Delete" textFill="WHITE" />
-                                <JFXButton fx:id="btnCategoryCancel" buttonType="RAISED" layoutX="458.0" layoutY="311.0" onAction="#onCategoryCancel" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: red;" text="Cancel" textFill="WHITE" />
-                            </children>
+                        <Pane prefHeight="351.0" prefWidth="413.0" styleClass="sub-colour">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="117.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/Hotel-logo.png" />
+                           </image>
+                        </ImageView>
+                        <JFXTextField fx:id="txtuserName" layoutX="117.0" layoutY="175.0" prefHeight="25.0" prefWidth="199.0" promptText="Enter Username Or Mobile No" />
+                        <JFXButton buttonType="RAISED" layoutX="154.0" layoutY="289.0" onAction="#onlogin" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: blue;" text="Login" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXPasswordField fx:id="txtPassword" layoutX="117.0" layoutY="225.0" prefHeight="25.0" prefWidth="199.0" promptText="Enter Password" />
+                     </children>
                         </Pane>
                     </center>
                 </BorderPane>
             </children></Pane>
     </children>
-    <padding>
-        <Insets bottom="10.0" right="10.0" top="10.0" />
-    </padding>
+
 </AnchorPane>

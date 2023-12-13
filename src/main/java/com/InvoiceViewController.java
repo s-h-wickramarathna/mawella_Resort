@@ -179,7 +179,6 @@ public class InvoiceViewController implements Initializable {
         txtQty.setText("");
         txtSerialNo.setText("");
         txtUnitPrice.setText("");
-        btnInvoiceAddItem.setDisable(false);
         btnUpdateItem.setDisable(true);
         btnDeleteItem.setDisable(true);
     }
@@ -228,21 +227,27 @@ public class InvoiceViewController implements Initializable {
             alert.show();
 
         } else {
-            if (!isSerialNumberExists(txtSerialNo.getText())) {
-                // Serial number doesn't exist, proceed with insertion
-                list.add(new InvoiceItem(txtSerialNo.getText(), txtFoodItem.getText(), txtQty.getText(), txtUnitPrice.getText()));
-                invoiceTable.setItems(list);
-                calculateQuantitySum();
-                if (GrandPriceLabel.getText().equals("0.0")) {
-                    btnMakePayment.setDisable(true);
-                } else {
-                    btnMakePayment.setDisable(false);
-                }
-                clearAddItemFields();
+            if (txtSerialNo.getText().isEmpty()){
+                Alert alert = showErrorAlert("Invalid Food");
+                alert.show();
+            }else{
+                if (!isSerialNumberExists(txtSerialNo.getText())) {
+                    // Serial number doesn't exist, proceed with insertion
+                    list.add(new InvoiceItem(txtSerialNo.getText(), txtFoodItem.getText(), txtQty.getText(), txtUnitPrice.getText()));
+                    invoiceTable.setItems(list);
+                    calculateQuantitySum();
+                    if (GrandPriceLabel.getText().equals("0.0")) {
+                        btnMakePayment.setDisable(true);
+                    } else {
+                        btnMakePayment.setDisable(false);
+                    }
+                    clearAddItemFields();
 
-            } else {
-                showWarningAlert("Serial number already exists in the table.").show();
+                } else {
+                    showWarningAlert("Serial number already exists in the table.").show();
+                }
             }
+
         }
     }
 
@@ -496,6 +501,38 @@ public class InvoiceViewController implements Initializable {
             showErrorAlert("Only Numbers Must Required");
 
         }
+    }
+
+    public void ontypeFood(KeyEvent keyEvent) {
+        String txt = txtFoodItem.getText();
+
+        if (txt.isEmpty()){
+            txtSerialNo.setText("");
+            txtUnitPrice.setText("");
+            txtQty.setText("");
+            btnInvoiceAddItem.setDisable(true);
+
+        }else{
+            try {
+                ResultSet resultSet = MySQL.Search("SELECT * FROM `food` WHERE `food_name`='" + txt + "' ");
+
+                if (resultSet.next()) {
+                    txtSerialNo.setText(resultSet.getString("serial_no"));
+                    txtUnitPrice.setText(resultSet.getString("selling_price"));
+                    txtQty.setText("1");
+                    btnInvoiceAddItem.setDisable(false);
+                }else {
+                    txtSerialNo.setText("");
+                    txtUnitPrice.setText("");
+                    txtQty.setText("");
+                    btnInvoiceAddItem.setDisable(true);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }
 

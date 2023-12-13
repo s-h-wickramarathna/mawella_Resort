@@ -23,11 +23,13 @@
                 <JFXButton fx:id="btnMainClose" alignment="TOP_RIGHT" buttonType="RAISED" cache="true" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="1236.0" layoutY="8.0" onAction="#closeStage" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: red;" text=" " textAlignment="CENTER" />
                 <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" layoutX="1247.0" layoutY="26.0" size="15" wrappingWidth="9.571428298950195" />
                 <Label layoutX="12.0" layoutY="9.0" text="Resturent &amp; Bar Management" />
-            <JFXButton buttonType="RAISED" layoutX="1122.0" layoutY="8.0" onAction="#goToAdminPage" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: blue;" text="Log As Admin" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="1059.0" layoutY="8.0" onAction="#onLoginPage" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: blue;" text="Log As Admin" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="12.0" />
                </font>
             </JFXButton>
+            <JFXButton alignment="TOP_RIGHT" buttonType="RAISED" cache="true" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="1190.0" layoutY="8.0" onAction="#onMinimize" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: Black;" text=" " textAlignment="CENTER" />
+            <FontAwesomeIconView fill="WHITE" glyphName="EYE" layoutX="1200.0" layoutY="26.0" size="15" wrappingWidth="9.571428298950195" />
             </children>
         </AnchorPane>
     </top>

@@ -9,8 +9,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,14 +49,24 @@ public class UserDashboardController implements Initializable {
         borderPane.setCenter(FXMLLoader.load(getClass().getResource("panes/invoice-view.fxml")));
     }
 
-    public void goToAdminPage(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("admin-dashboard.fxml"))));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
+
+    public void onLoginPage(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("JDialog/loginDialog.fxml"));
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
         stage.show();
-        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-        stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
-        stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
+
+        Node source = (Node) event.getSource();
+        stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
+
+    public void onMinimize(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.setIconified(true);
     }
 }

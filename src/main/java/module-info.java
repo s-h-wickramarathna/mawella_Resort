@@ -5,6 +5,7 @@ module com {
     requires java.sql;
     requires com.jfoenix;
     requires jasperreports;
+    requires jbcrypt;
 
     opens com to javafx.fxml;
     exports com;
