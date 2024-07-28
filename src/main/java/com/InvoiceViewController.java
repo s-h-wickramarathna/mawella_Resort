@@ -147,6 +147,7 @@ public class InvoiceViewController implements Initializable {
         txtInvoiceDate.setText(getDate());
         txtInvoiceNumber.setText(getUniqueID());
         txtServiceCharge.setText("10");
+        btnInvoiceAddItem.setDisable(true);
         btnUpdateItem.setDisable(true);
         btnDeleteItem.setDisable(true);
         btnMakePayment.setDisable(true);
@@ -165,7 +166,7 @@ public class InvoiceViewController implements Initializable {
         txtPaidAmount.setText("");
         txtBalance.setText("");
         stewardsComboBox.setValue(null);
-        btnInvoiceAddItem.setDisable(false);
+        btnInvoiceAddItem.setDisable(true);
         btnUpdateItem.setDisable(true);
         btnDeleteItem.setDisable(true);
         btnMakePayment.setDisable(true);
@@ -386,7 +387,7 @@ public class InvoiceViewController implements Initializable {
 
         try {
 
-            JasperDesign design = JRXmlLoader.load("src/main/resources/com/example/navigate/reports/invoice.jrxml");
+            JasperDesign design = JRXmlLoader.load("src/main/resources/reports/invoice.jrxml");
             JRDesignQuery designQuery = new JRDesignQuery();
             designQuery.setText("SELECT *," +
                     "`mawellaresort`.`invoice_item`.`invoice_no` AS `inv_no`" +
@@ -409,7 +410,7 @@ public class InvoiceViewController implements Initializable {
     private void orderRecipts(String invoiceNo) {
         try {
 
-            JasperDesign design = JRXmlLoader.load("src/main/resources/com/example/navigate/reports/Order.jrxml");
+            JasperDesign design = JRXmlLoader.load("src/main/resources/reports/Order.jrxml");
             JRDesignQuery designQuery = new JRDesignQuery();
             designQuery.setText("SELECT *," +
                     "`mawellaresort`.`invoice_item`.`invoice_no` AS `inv_no`" +
@@ -520,12 +521,12 @@ public class InvoiceViewController implements Initializable {
                     txtSerialNo.setText(resultSet.getString("serial_no"));
                     txtUnitPrice.setText(resultSet.getString("selling_price"));
                     txtQty.setText("1");
-                    btnInvoiceAddItem.setDisable(false);
+                    btnInvoiceAddItem.setDisable(true);
                 }else {
                     txtSerialNo.setText("");
                     txtUnitPrice.setText("");
                     txtQty.setText("");
-                    btnInvoiceAddItem.setDisable(true);
+                    btnInvoiceAddItem.setDisable(false);
                 }
 
             } catch (Exception e) {

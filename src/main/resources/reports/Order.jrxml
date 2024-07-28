@@ -126,7 +126,7 @@ FROM mawellaresort.invoice
 			</staticText>
 			<image>
 				<reportElement x="0" y="0" width="258" height="179" uuid="0752b6ad-d8e7-4ce1-8d27-f120ad5348bc"/>
-				<imageExpression><![CDATA["src/main/resources/com/example/navigate/images/Recipt.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["src/main/resources/images/Recipt.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

@@ -131,7 +131,7 @@ FROM mawellaresort.invoice
 			</line>
 			<image>
 				<reportElement x="-7" y="0" width="271" height="189" uuid="aa9a2a34-ce85-4b1d-b2c3-e647e8379b5b"/>
-				<imageExpression><![CDATA["src/main/resources/com/example/navigate/images/Recipt.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["src/main/resources/images/Recipt.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

@@ -96,6 +96,11 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>com/com.InitialController</mainClass>
+                            <options>
+                                <option>--add-exports=javafx.base/com.sun.javafx.event=ALL-UNNAMED</option>
+                                <option>--add-exports=javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED</option>
+                                <option>--add-exports=javafx.controls/com.sun.javafx.scene.control=ALL-UNNAMED</option>
+                            </options>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
